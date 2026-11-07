@@ -1,0 +1,54 @@
+{
+  "alerts": {
+    "ALRT-101": {"service": "checkout", "title": "Checkout error rate 12% (threshold 2%)", "metric": "error_rate", "started": "2026-11-06T14:05Z", "severity": "critical"},
+    "ALRT-202": {"service": "payments", "title": "Payments p95 latency 2,800 ms (threshold 800 ms)", "metric": "latency_p95_ms", "started": "2026-11-06T09:40Z", "severity": "high"},
+    "ALRT-303": {"service": "search", "title": "Search 5xx rate 8% and pods restarting", "metric": "memory_pct", "started": "2026-11-06T03:15Z", "severity": "high"}
+  },
+  "metrics": {
+    "checkout": {
+      "error_rate": [["13:50", 0.4], ["13:55", 0.5], ["14:00", 0.4], ["14:05", 9.8], ["14:10", 12.1], ["14:15", 12.4]],
+      "latency_p95_ms": [["13:50", 310], ["14:00", 305], ["14:10", 330], ["14:15", 325]],
+      "requests_per_min": [["13:50", 1200], ["14:00", 1180], ["14:10", 1210], ["14:15", 1195]]
+    },
+    "payments": {
+      "latency_p95_ms": [["09:20", 420], ["09:30", 640], ["09:40", 1900], ["09:45", 2800], ["09:50", 2750]],
+      "db_connections_used": [["09:20", 61], ["09:30", 88], ["09:40", 100], ["09:45", 100], ["09:50", 100]],
+      "requests_per_min": [["09:20", 2100], ["09:30", 3600], ["09:40", 5100], ["09:45", 5200], ["09:50", 5050]],
+      "error_rate": [["09:20", 0.2], ["09:40", 1.1], ["09:50", 1.4]]
+    },
+    "search": {
+      "memory_pct": [["01:00", 61], ["02:00", 74], ["02:30", 86], ["03:00", 97], ["03:10", 99], ["03:15", 42]],
+      "error_rate": [["02:00", 0.3], ["03:00", 2.1], ["03:15", 8.0]],
+      "restarts": [["02:00", 0], ["03:00", 1], ["03:15", 4]]
+    }
+  },
+  "logs": {
+    "checkout": [
+      "14:04:58 INFO  deploy checkout v2.4.0 rollout complete (3/3 pods)",
+      "14:05:12 ERROR TypeError: Cannot read properties of undefined (reading 'currency') at PriceFormatter.format (price.js:42)",
+      "14:05:13 ERROR POST /api/checkout 500 TypeError: Cannot read properties of undefined (reading 'currency')",
+      "14:06:40 ERROR TypeError: Cannot read properties of undefined (reading 'currency') at PriceFormatter.format (price.js:42)",
+      "14:07:02 WARN  retry budget exhausted for cart-service call"
+    ],
+    "payments": [
+      "09:38:10 WARN  db pool usage 95/100",
+      "09:40:03 ERROR ConnectionPoolTimeout: pool exhausted (100/100), waited 2000 ms for a connection",
+      "09:41:17 ERROR ConnectionPoolTimeout: pool exhausted (100/100), waited 2000 ms for a connection",
+      "09:42:30 INFO  traffic from campaign 'black-friday-early' up 2.4x",
+      "09:44:51 WARN  slow query: SELECT * FROM ledger_entries WHERE account_id = ? (1,840 ms)"
+    ],
+    "search": [
+      "02:58:44 WARN  heap usage 96% after full GC",
+      "03:01:10 ERROR java.lang.OutOfMemoryError: Java heap space in QueryCache.put",
+      "03:01:12 ERROR pod search-7d9f restarted: OOMKilled (exit code 137)",
+      "03:09:55 ERROR pod search-4b1c restarted: OOMKilled (exit code 137)",
+      "03:14:20 ERROR GET /search 503 upstream unavailable"
+    ]
+  },
+  "deploys": {
+    "checkout": [{"version": "v2.4.0", "at": "2026-11-06T14:02Z", "author": "ci", "change": "New price formatting for multi-currency carts"}, {"version": "v2.3.9", "at": "2026-11-03T10:15Z", "author": "ci", "change": "Bug fixes"}],
+    "payments": [{"version": "v5.1.2", "at": "2026-10-31T16:00Z", "author": "ci", "change": "Dependency updates"}],
+    "search": [{"version": "v3.8.0", "at": "2026-11-01T12:00Z", "author": "ci", "change": "Added in-memory query cache"}]
+  },
+  "replicas": {"checkout": 3, "payments": 4, "search": 3}
+}

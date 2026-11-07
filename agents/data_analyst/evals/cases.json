@@ -1,0 +1,10 @@
+[
+  {"id": "top-products", "input": "What are the top 3 products by revenue?", "checks": {"called": ["list_tables", "run_sql"], "contains": ["Laptop Air 13", "35,964", "Tablet 11"], "no_tool_errors": true}},
+  {"id": "total-revenue", "input": "What is our total revenue?", "checks": {"contains": ["158,767"], "matches": "```sql"}},
+  {"id": "monthly-filter", "input": "What was total revenue in March?", "checks": {"contains": ["29,923"]}},
+  {"id": "region-count", "input": "How many orders came from the West region?", "checks": {"contains": ["69"]}},
+  {"id": "by-region", "input": "Show revenue by region", "checks": {"matches": "North · 55,101"}},
+  {"id": "best-customer", "input": "Who is our best customer?", "checks": {"contains": ["Tom A."]}},
+  {"id": "aov", "input": "What is the average order value?", "checks": {"contains": ["396.92"]}},
+  {"id": "unanswerable", "input": "What is our employee headcount?", "checks": {"contains": ["can't answer"], "not_called": ["run_sql"]}}
+]

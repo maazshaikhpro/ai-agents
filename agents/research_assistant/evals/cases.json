@@ -1,0 +1,13 @@
+[
+  {"id": "rrf", "input": "What is reciprocal rank fusion?", "checks": {"called": ["search_docs"], "contains": ["rank"], "cites": true, "max_steps": 3}},
+  {"id": "hybrid-search", "input": "How does hybrid search combine keyword and vector results?", "checks": {"called": ["search_docs"], "contains_any": [["merges the rankings", "reciprocal rank fusion"]], "cites": true}},
+  {"id": "mcp-transports", "input": "What transports does MCP support?", "checks": {"contains": ["stdio", "streamable http"], "cites": true}},
+  {"id": "mcp-roles", "input": "What are the host, client and server roles in MCP?", "checks": {"contains_any": [["host", "client"]], "cites": true}},
+  {"id": "stop-conditions", "input": "When should an agent stop looping?", "checks": {"contains_any": [["step", "final answer"]], "cites": true}},
+  {"id": "llm-judge", "input": "What is LLM-as-judge?", "checks": {"contains": ["rubric"], "cites": true}},
+  {"id": "trajectory", "input": "What does a trajectory eval check?", "checks": {"contains_any": [["tools were called", "path"]], "cites": true}},
+  {"id": "context-window", "input": "What is a context window?", "checks": {"contains": ["tokens"], "cites": true}},
+  {"id": "prompt-injection", "input": "What is prompt injection?", "checks": {"contains": ["instructions"], "cites": true}},
+  {"id": "out-of-scope", "input": "What is the weather in Paris today?", "checks": {"contains": ["couldn't find"], "not_contains": ["[1]"]}},
+  {"id": "out-of-scope-2", "input": "Who won the football world cup?", "checks": {"contains": ["couldn't find"]}}
+]

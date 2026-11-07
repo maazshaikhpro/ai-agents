@@ -1,0 +1,16 @@
+[project]
+name = "ai-agents"
+version = "0.1.0"
+description = "Production-style AI agents with a dependency-free harness, tool calling, RAG, memory, evals and MCP."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Maaz Shaikh" }]
+dependencies = []
+
+[project.urls]
+Homepage = "https://maazshaikh.pro/agents/"
+Source = "https://github.com/maazshaikhpro/ai-agents"
+
+[tool.setuptools.packages.find]
+include = ["agentkit*", "agents*"]

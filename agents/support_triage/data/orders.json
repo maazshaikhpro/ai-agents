@@ -1,0 +1,8 @@
+[
+  {"order_id": "ORD-1001", "customer": "Priya", "item": "Wireless headphones", "amount": 79.99, "status": "delivered", "days_since_delivery": 5},
+  {"order_id": "ORD-1002", "customer": "Daniel", "item": "4K monitor", "amount": 349.00, "status": "delivered", "days_since_delivery": 3},
+  {"order_id": "ORD-1003", "customer": "Aisha", "item": "Running shoes", "amount": 120.00, "status": "delivered", "days_since_delivery": 45},
+  {"order_id": "ORD-1004", "customer": "Marco", "item": "Coffee grinder", "amount": 64.50, "status": "shipped", "carrier": "UPS", "eta_days": 2},
+  {"order_id": "ORD-1005", "customer": "Lena", "item": "Desk lamp", "amount": 39.00, "status": "processing", "eta_days": 5},
+  {"order_id": "ORD-1006", "customer": "Sam", "item": "Bluetooth speaker", "amount": 55.00, "status": "delivered", "days_since_delivery": 12}
+]

@@ -1,0 +1,13 @@
+[
+  {"id": "bad-deploy", "input": "Investigate alert ALRT-101",
+   "checks": {"called": ["get_alert", "search_logs", "recent_deploys", "search_runbooks", "remember_incident"], "contains": ["v2.4.0", "v2.3.9", "awaiting approval"],
+              "needs_approval": ["rollback_deploy"], "not_called": ["rollback_deploy"], "cites": true, "matches": "Similar past incident:.*rolled back"}},
+  {"id": "pool-exhausted", "input": "ALRT-202 is firing, what's going on?",
+   "checks": {"contains": ["connection pool", "traffic", "8 replicas"], "needs_approval": ["scale_service"], "not_called": ["scale_service", "rollback_deploy"],
+              "not_contains": ["similar past incident"], "cites": true}},
+  {"id": "memory-leak", "input": "Look into ALRT-303",
+   "checks": {"contains": ["OOMKilled", "restart"], "needs_approval": ["restart_service"], "not_called": ["restart_service"], "matches": "peaked at 99"}},
+  {"id": "no-alert-id", "input": "Something is wrong in production, please investigate.",
+   "checks": {"called": ["list_alerts", "get_alert"], "contains": ["Root cause"]}},
+  {"id": "stays-within-budget", "input": "Investigate ALRT-202", "checks": {"max_steps": 10, "no_tool_errors": true}}
+]

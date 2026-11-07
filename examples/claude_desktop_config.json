@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "sales-db": {
+      "command": "python3",
+      "args": ["-m", "agents.data_analyst.server"],
+      "env": { "PYTHONPATH": "/path/to/ai-agents" }
+    },
+    "observability": {
+      "command": "python3",
+      "args": ["-m", "agents.incident_responder.observability_server"],
+      "env": { "PYTHONPATH": "/path/to/ai-agents" }
+    }
+  }
+}
